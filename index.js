@@ -1,19 +1,18 @@
 const http = require("http");
+const express = require("express");
+const app = express();
 
-const myServer = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello World!");
-  } else if (req.url === "/about") {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("About Us Page");
-  } else if (req.url === "/contact") {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Contact Us Page");
-  } else {
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("Page Not Found");
-  }
+// Define routes
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-myServer.listen(8000, () => console.log("Sever Started!"));
+app.get("/about", (req, res) => {
+  res.send("Welcome to the about us page");
+});
+
+app.get("/contact", (req, res) => {
+  res.send("Welcome to the contact us page");
+});
+
+app.listen(8000, () => console.log("Sever Started!"));
